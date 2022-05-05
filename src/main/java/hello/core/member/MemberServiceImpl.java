@@ -1,5 +1,9 @@
 package hello.core.member;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class MemberServiceImpl implements MemberService{
 
     // 의존관계가 인터페이스 뿐만 아니라 구현까지 모두 의존하는 문제점이 있다..
@@ -10,6 +14,7 @@ public class MemberServiceImpl implements MemberService{
     // 위에 코드를 아래 인터페이스에만 의존하고 생성자를 주입해준다.
     private final MemberRepository memberRepository;
 
+    @Autowired
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
