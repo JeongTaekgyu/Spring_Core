@@ -12,9 +12,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderServiceImpl implements OrderService{
 
-//    private final MemberRepository memberRepository = new MemoryMemberRepository();
-    private final MemberRepository memberRepository;
-
     // 지금 클래스 의존관계를 분석하면 추상(인터페이스)뿐만 아니라 구체(구현)클래스에도 의존하고 있다.
     // 추상 (인터페이스) 의존 : DiscountPolicy
     // 구체(구현)클래스 : FixDiscountPolicy, RateDiscountPolicy
@@ -24,10 +21,14 @@ public class OrderServiceImpl implements OrderService{
 //    private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
 
     // ★ 이렇게 하면 구체화에 의존하지 않고 인터페이스에만 의존한다. 주입은 밑에 처럼 생성자 주입으로 한다.★
+    // private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
 
-    @Autowired
+    //@Autowired  // 생성자가 하나이기 때문에 @Autowired 를 생략 가능하다.
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+//        System.out.println("memberRepository = " + memberRepository);
+//        System.out.println("discoutPolicy = " + discountPolicy);
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }

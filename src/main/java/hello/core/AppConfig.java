@@ -42,7 +42,12 @@ public class AppConfig {
     // 구현
     @Bean
     public DiscountPolicy discountPolicy() {
-//        return new FixDiscountPolicy();
+        // FixDiscountPolicy -> RateDiscountPolicy 로 변경해도 구성 영역만 영향을 받고,
+        // 사용 영역은 전혀 영향을 받지 않는다.
+        // 하지만 새로 개발한 정률 할인 정책을 적용하려고 하니 클라이언트 코드인 주문 서비스 구현체도 함께 변경해야함
+        // 주문 서비스 클라이언트가 인터페이스인 DiscountPolicy 뿐만 아니라, 구체 클래스인
+        // FixDiscountPolicy 도 함께 의존 -> DIP 위반
+        //return new FixDiscountPolicy();
         return new RateDiscountPolicy();
     }
 }
