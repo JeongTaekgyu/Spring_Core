@@ -28,8 +28,7 @@ public class AppConfig {
     public OrderService orderService() {
         System.out.println("call AppConfig.orderService");
         // 이렇게하면 생정자 주입을 통해서 DIP원칙을 위반하지 않음
-        return new OrderServiceImpl(
-                memberRepository(), discountPolicy());
+        return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
     // 구현
