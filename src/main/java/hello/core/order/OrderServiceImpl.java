@@ -1,5 +1,6 @@
 package hello.core.order;
 
+import hello.core.annotation.MainDiscountPolicy;
 import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
 import hello.core.discount.RateDiscountPolicy;
@@ -30,7 +31,7 @@ public class OrderServiceImpl implements OrderService{
 
     // 밑에 생성자 주입을 @RequiredArgsConstructor 로 대체한다. 물론 final이 붙어야 한다.
     @Autowired  // 생성자가 하나이기 때문에 @Autowired 를 생략 가능하다.
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) {
 //        System.out.println("memberRepository = " + memberRepository);
 //        System.out.println("discoutPolicy = " + discountPolicy);
         this.memberRepository = memberRepository;
