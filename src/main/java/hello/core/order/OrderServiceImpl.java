@@ -8,10 +8,11 @@ import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor    // final이 있는 필드를 모아서 생성자를 만들어 준다. ( 생성자 주입), ctrl + f12 로 확인
+//@RequiredArgsConstructor// final이 있는 필드를 모아서 생성자를 만들어 준다. ( 생성자 주입), ctrl + f12 로 확인
 public class OrderServiceImpl implements OrderService{
 
     // 지금 클래스 의존관계를 분석하면 추상(인터페이스)뿐만 아니라 구체(구현)클래스에도 의존하고 있다.
@@ -28,13 +29,13 @@ public class OrderServiceImpl implements OrderService{
     private final DiscountPolicy discountPolicy;
 
     // 밑에 생성자 주입을 @RequiredArgsConstructor 로 대체한다. 물론 final이 붙어야 한다.
-/*    //@Autowired  // 생성자가 하나이기 때문에 @Autowired 를 생략 가능하다.
+    @Autowired  // 생성자가 하나이기 때문에 @Autowired 를 생략 가능하다.
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
 //        System.out.println("memberRepository = " + memberRepository);
 //        System.out.println("discoutPolicy = " + discountPolicy);
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
-    }*/
+    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
